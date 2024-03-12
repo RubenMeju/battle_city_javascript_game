@@ -9,6 +9,7 @@ canvas.height = 728;
 
 const cellSize = 28;
 
+const enemies = [];
 //DIBUJAR EL MAPA
 function drawMap() {
   // Iterar sobre cada celda del mapa
@@ -53,8 +54,16 @@ function drawMap() {
 }
 
 const tank = new Tank((canvas.width - 16) / 3, canvas.height - 50);
-const enemy1 = new Enemy(0, 0);
-const enemy2 = new Enemy(0, 60);
+
+// Función para crear un nuevo enemigo y agregarlo a la lista de enemigos
+function createEnemy(x, y) {
+  const newEnemy = new Enemy(x, y);
+  enemies.push(newEnemy);
+}
+
+createEnemy(0, 0);
+createEnemy(canvas.width - tank.size, 0);
+createEnemy(canvas.width / 2 - tank.size, 0);
 
 function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -79,19 +88,18 @@ function update() {
   });
 
   //Enemigos
-  if (enemy1.alive) {
-    enemy1.draw();
-    enemy1.move();
+  for (let i = 0; enemies.length > i; i++) {
+    if (enemies[i].alive) {
+      enemies[i].draw();
+      enemies[i].move();
 
-    enemy1.bullets.forEach((bullet) => {
-      bullet.draw();
-      bullet.move();
-    });
+      enemies[i].bullets.forEach((bullet) => {
+        bullet.draw();
+        bullet.move();
+      });
+    }
   }
 
-  //  enemy2.draw();
-  // enemy2.move();
-  //console.log("balas", enemy1.bullets.length);
   requestAnimationFrame(update);
 }
 

@@ -5,7 +5,7 @@ class Enemy {
     this.width = 16;
     this.height = 15;
     this.size = 48;
-    this.speed = 3;
+    this.speed = 1.5;
     this.clipX = 225;
     this.clipY = 0;
 
