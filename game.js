@@ -54,6 +54,7 @@ function drawMap() {
 
 const tank = new Tank((canvas.width - 16) / 3, canvas.height - 50);
 const enemy1 = new Enemy(0, 0);
+const enemy2 = new Enemy(0, 60);
 
 function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -80,6 +81,10 @@ function update() {
   //Enemigos
   enemy1.draw();
   enemy1.move();
+
+  //  enemy2.draw();
+  // enemy2.move();
+
   requestAnimationFrame(update);
 }
 

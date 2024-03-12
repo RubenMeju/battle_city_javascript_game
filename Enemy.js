@@ -6,7 +6,7 @@ class Enemy {
     this.height = 15;
     this.size = 48;
     this.speed = 3;
-    this.clipX = 128;
+    this.clipX = 225;
     this.clipY = 0;
 
     this.direction = "right";
@@ -27,22 +27,40 @@ class Enemy {
     );
   }
   move() {
-    if (this.direction === "right" && this.x < canvas.width - this.size) {
-      this.x += this.speed;
-    } else if (this.direction === "left" && this.x > 2) {
-      this.x -= this.speed;
-    } else if (this.direction === "up" && this.y > 0) {
-      this.y -= this.speed;
-    } else if (
-      this.direction === "down" &&
-      this.y < canvas.height - this.size
+    let newX = this.x;
+    let newY = this.y;
+
+    if (this.direction === "right") {
+      this.clipX = 225;
+      newX += this.speed;
+    } else if (this.direction === "left") {
+      this.clipX = 160;
+      newX -= this.speed;
+    } else if (this.direction === "up") {
+      this.clipX = 128;
+
+      newY -= this.speed;
+    } else if (this.direction === "down") {
+      this.clipX = 192;
+
+      newY += this.speed;
+    }
+
+    // Verificar si el nuevo movimiento está dentro de los límites del canvas y no hay colisión
+    if (
+      newX >= 0 &&
+      newX + this.size <= canvas.width &&
+      newY >= 0 &&
+      newY + this.size <= canvas.height &&
+      !this.isCollision(newX, newY)
     ) {
-      this.y += this.speed;
+      this.x = newX;
+      this.y = newY;
     } else {
       this.changeDirection();
     }
-    console.log(this.direction);
   }
+
   getRandomDirection() {
     const randomNum = Math.random();
     if (randomNum < 0.25) {
