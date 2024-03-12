@@ -11,6 +11,8 @@ class Enemy {
 
     this.direction = "right";
     this.bullets = [];
+
+    this.alive = true; // Atributo de estado para indicar si el enemigo está vivo
   }
 
   draw() {
@@ -58,6 +60,7 @@ class Enemy {
       this.y = newY;
     } else {
       this.changeDirection();
+      this.shoot();
     }
   }
 
@@ -103,5 +106,37 @@ class Enemy {
     }
 
     return false; // No hay colisión
+  }
+
+  shoot() {
+    if (this.bullets.length < 2) {
+      // Limitar a dos balas
+      let bulletX = this.x + this.size / 2;
+      let bulletY = this.y + this.size / 2;
+
+      switch (this.direction) {
+        case "up":
+          bulletY -= this.size / 2;
+          break;
+        case "down":
+          bulletY += this.size / 2;
+          break;
+        case "left":
+          bulletX -= this.size / 2;
+          break;
+        case "right":
+          bulletX += this.size / 2;
+          break;
+      }
+
+      const bullet = new Bullet(bulletX, bulletY, this.direction);
+      this.bullets.push(bullet);
+      console.log("Bullet", bullet);
+    }
+  }
+
+  destroy() {
+    this.alive = false; // Marcar al enemigo como muerto
+    // Aquí puedes realizar otras acciones relacionadas con la destrucción del enemigo, como eliminarlo de la pantalla
   }
 }

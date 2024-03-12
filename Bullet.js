@@ -99,7 +99,19 @@ class Bullet {
     if (level[cellY] && level[cellY][cellX] === 2) {
       this.destroy();
       this.drawExplosion();
-      //  return false;
+    }
+
+    //Destruir al enemigo si la bala colisiona con el.
+    if (
+      this.x < enemy1.x + enemy1.size &&
+      this.x + this.width > enemy1.x &&
+      this.y < enemy1.y + enemy1.size &&
+      this.y + this.height > enemy1.y
+    ) {
+      console.log("mejuuu");
+      this.destroy();
+      this.drawExplosion();
+      enemy1.destroy();
     }
 
     // Verificar si la celda contiene un muro (valor igual a 1 en la matriz level)
@@ -117,7 +129,8 @@ class Bullet {
   }
 
   destroyEnemy() {
-    if (this.x === enemy1.x) {
+    console.log("x bala", this.x);
+    if (this.x === enemy1.x + tank.size) {
       console.log("Enemy destroyed");
     }
   }

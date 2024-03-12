@@ -79,12 +79,19 @@ function update() {
   });
 
   //Enemigos
-  enemy1.draw();
-  enemy1.move();
+  if (enemy1.alive) {
+    enemy1.draw();
+    enemy1.move();
+
+    enemy1.bullets.forEach((bullet) => {
+      bullet.draw();
+      bullet.move();
+    });
+  }
 
   //  enemy2.draw();
   // enemy2.move();
-
+  //console.log("balas", enemy1.bullets.length);
   requestAnimationFrame(update);
 }
 
