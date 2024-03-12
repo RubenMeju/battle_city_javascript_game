@@ -48,9 +48,32 @@ function drawMap() {
           cellSize, // ancho del dibujo
           cellSize // ancho del dibujo
         );
+      } else if (
+        level[i][j] === 4 &&
+        j < level[i].length - 1 && // Asegurarse de que estamos dentro de los límites de la matriz
+        level[i][j + 1] === 4 &&
+        i < level.length - 1 &&
+        level[i + 1][j] === 4 &&
+        level[i + 1][j + 1] === 4
+      ) {
+        drawEagle(j * cellSize, i * cellSize); // Dibujar sprite en la esquina superior izquierda del cuadrado
       }
     }
   }
+}
+
+function drawEagle(x, y) {
+  ctx.drawImage(
+    sprites,
+    304,
+    32,
+    16, // el tamaño del recorte
+    16, // el tamaño del recorte
+    x, // posición X del dibujo
+    y, // posición X del dibujo
+    55, // ancho del dibujo
+    55 // ancho del dibujo
+  );
 }
 
 const tank = new Tank((canvas.width - 16) / 3, canvas.height - 50);
@@ -105,3 +128,10 @@ function update() {
 
 update();
 init();
+
+[
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 4, 4, 0, 0],
+  [0, 0, 4, 4, 0, 0],
+];
