@@ -56,29 +56,15 @@ function drawMap() {
         level[i + 1][j] === 4 &&
         level[i + 1][j + 1] === 4
       ) {
-        drawEagle(j * cellSize, i * cellSize); // Dibujar sprite en la esquina superior izquierda del cuadrado
+        eagle.draw(j * cellSize, i * cellSize); // Dibujar sprite en la esquina superior izquierda del cuadrado
       }
     }
   }
 }
 
-// DIBUJAR EL AGUILA
-function drawEagle(x, y) {
-  ctx.drawImage(
-    sprites,
-    304,
-    32,
-    16, // el tamaño del recorte
-    16, // el tamaño del recorte
-    x, // posición X del dibujo
-    y, // posición X del dibujo
-    55, // ancho del dibujo
-    55 // ancho del dibujo
-  );
-}
+const eagle = new Eagle();
 
 const tank = new Tank((canvas.width - 16) / 3, canvas.height - 50);
-
 // Función para crear un nuevo enemigo y agregarlo a la lista de enemigos
 function createEnemy(x, y) {
   const newEnemy = new Enemy(x, y);
