@@ -131,7 +131,7 @@ class Enemy {
 
       const bullet = new Bullet(bulletX, bulletY, this.direction);
       this.bullets.push(bullet);
-      console.log("Bullet", bullet);
+      //console.log("Bullet", bullet);
     }
   }
 

@@ -62,6 +62,7 @@ function drawMap() {
   }
 }
 
+// DIBUJAR EL AGUILA
 function drawEagle(x, y) {
   ctx.drawImage(
     sprites,

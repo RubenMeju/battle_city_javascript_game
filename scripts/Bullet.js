@@ -94,6 +94,11 @@ class Bullet {
     // Calcular el índice de la celda en la que se encuentra la bala
     const cellX = Math.floor(this.x / cellSize);
     const cellY = Math.floor(this.y / cellSize);
+    const xaguila = 304;
+    //Destruir el aguila
+    if (this.x > xaguila && this.x < xaguila + 55) {
+      console.log("Contacto aguila");
+    }
 
     // Destruir la bala si el muro es indestructible
     if (level[cellY] && level[cellY][cellX] === 2) {
@@ -109,9 +114,11 @@ class Bullet {
         this.y < enemies[i].y + enemies[i].size &&
         this.y + this.height > enemies[i].y
       ) {
-        console.log("mejuuu");
+        //destruir la bala
         this.destroy();
+        //mostrar animacion
         this.drawExplosion();
+        // eliminar el enemigo del array enemies
         enemies[i].destroy();
       }
     }
@@ -127,13 +134,6 @@ class Bullet {
 
     // Establecer el valor de la celda en 0 para eliminar el muro
     level[cellY][cellX] = 0;
-  }
-
-  destroyEnemy() {
-    console.log("x bala", this.x);
-    if (this.x === enemy1.x + tank.size) {
-      console.log("Enemy destroyed");
-    }
   }
 
   // Destruir la bala despues de impactar
