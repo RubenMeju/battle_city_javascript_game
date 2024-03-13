@@ -101,23 +101,25 @@ class Bullet {
     }
 
     //Destruir al enemigo si la bala colisiona con el.
-    for (let i = 0; enemies.length > i; i++) {
-      if (
-        this.x < enemies[i].x + enemies[i].size &&
-        this.x + this.width > enemies[i].x &&
-        this.y < enemies[i].y + enemies[i].size &&
-        this.y + this.height > enemies[i].y
-      ) {
-        //destruir la bala
-        this.destroy();
-        //mostrar animacion
-        this.drawExplosion();
-        // eliminar el enemigo del array enemies
-        enemies[i].destroy();
+    if (this.owner === "player") {
+      for (let i = 0; enemies.length > i; i++) {
+        if (
+          this.x < enemies[i].x + enemies[i].size &&
+          this.x + this.width > enemies[i].x &&
+          this.y < enemies[i].y + enemies[i].size &&
+          this.y + this.height > enemies[i].y
+        ) {
+          //destruir la bala
+          this.destroy();
+          //mostrar animacion
+          this.drawExplosion();
+          // eliminar el enemigo del array enemies
+          enemies[i].destroy();
+        }
       }
+      // Verificar si la celda contiene un muro (valor igual a 1 en la matriz level)
+      return level[cellY] && level[cellY][cellX] === 1;
     }
-    // Verificar si la celda contiene un muro (valor igual a 1 en la matriz level)
-    return level[cellY] && level[cellY][cellX] === 1;
   }
 
   // Destruir el muro donde golpeo la bala
