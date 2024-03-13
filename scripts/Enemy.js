@@ -100,8 +100,21 @@ class Enemy {
           (level[i] && level[i][j] === 1) ||
           (level[i] && level[i][j] === 2)
         ) {
-          return true; // Hay colisión
+          return true; // Hay colisión con una pared
         }
+      }
+    }
+
+    // Verificar colisión con otros enemigos
+    for (let enemy of enemies) {
+      if (
+        enemy !== this && // No verificar colisión consigo mismo
+        newX < enemy.x + enemy.size &&
+        newX + this.size > enemy.x &&
+        newY < enemy.y + enemy.size &&
+        newY + this.size > enemy.y
+      ) {
+        return true; // Hay colisión con otro enemigo
       }
     }
 
