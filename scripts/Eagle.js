@@ -2,14 +2,21 @@ class Eagle {
   constructor(x, y) {
     this.x = x;
     this.y = y;
+    this.clipX = 304;
+    this.clipY = 32;
     this.isDestroyed = false;
   }
+
   // DIBUJAR EL AGUILA
   draw() {
+    if (this.isDestroyed) {
+      this.clipX = 322;
+    }
+
     ctx.drawImage(
       sprites,
-      304,
-      32,
+      this.clipX,
+      this.clipY,
       16, // el tamaño del recorte
       16, // el tamaño del recorte
       canvas.width / 2 - cellSize, // posición X del dibujo

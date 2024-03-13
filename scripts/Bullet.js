@@ -59,22 +59,20 @@ class Bullet {
         break;
     }
 
-    // Verificar colisiones con los muros
-    if (this.isCollision()) {
-      // Realizar acciones cuando haya colisión, como eliminar la bala y destruir parte del muro
-      this.destroy();
-      this.destroyWall();
-    }
+    // Verificar colisiones
+    this.isCollision();
   }
 
   isCollision() {
     // Calcular el índice de la celda en la que se encuentra la bala
     const cellX = Math.floor(this.x / cellSize);
     const cellY = Math.floor(this.y / cellSize);
-    const xaguila = 304;
-    //Destruir el aguila
-    if (this.x > xaguila && this.x < xaguila + 55) {
+
+    //Una bala alcanza el aguila
+    if (level[cellY] && level[cellY][cellX] === 4) {
       console.log("Contacto aguila");
+      eagle.isDestroyed = true;
+      this.destroy();
     }
 
     // Si la bala sale del canvas la destruimos
@@ -87,6 +85,13 @@ class Bullet {
       // activamos la animacion de la bala
 
       this.destroy();
+    }
+
+    // Destruir la bala si el muro es indestructible
+    if (level[cellY] && level[cellY][cellX] === 1) {
+      this.destroy();
+      this.destroyWall();
+      this.drawExplosion();
     }
 
     // Destruir la bala si el muro es indestructible
