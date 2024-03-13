@@ -121,7 +121,7 @@ class Tank {
           break;
       }
 
-      const bullet = new Bullet(bulletX, bulletY, this.direction);
+      const bullet = new Bullet(bulletX, bulletY, this.direction, "player");
       this.bullets.push(bullet);
       // console.log("Bullet", bullet);
     }

@@ -96,19 +96,19 @@ function update() {
     bullet.draw();
     bullet.move();
   });
+  // Enemigos
+  enemies.forEach((enemy) => {
+    if (enemy.alive) {
+      enemy.draw();
+      enemy.move();
 
-  //Enemigos
-  for (let i = 0; enemies.length > i; i++) {
-    if (enemies[i].alive) {
-      enemies[i].draw();
-      enemies[i].move();
-
-      enemies[i].bullets.forEach((bullet) => {
+      // Balas del enemigo
+      enemy.bullets.forEach((bullet) => {
         bullet.draw();
         bullet.move();
       });
     }
-  }
+  });
 
   requestAnimationFrame(update);
 }

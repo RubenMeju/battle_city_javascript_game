@@ -109,30 +109,28 @@ class Enemy {
   }
 
   shoot() {
-    if (this.bullets.length < 2) {
-      // Limitar a dos balas
-      let bulletX = this.x + this.size / 2;
-      let bulletY = this.y + this.size / 2;
+    // Limitar a dos balas
+    let bulletX = this.x + this.size / 2;
+    let bulletY = this.y + this.size / 2;
 
-      switch (this.direction) {
-        case "up":
-          bulletY -= this.size / 2;
-          break;
-        case "down":
-          bulletY += this.size / 2;
-          break;
-        case "left":
-          bulletX -= this.size / 2;
-          break;
-        case "right":
-          bulletX += this.size / 2;
-          break;
-      }
-
-      const bullet = new Bullet(bulletX, bulletY, this.direction);
-      this.bullets.push(bullet);
-      //console.log("Bullet", bullet);
+    switch (this.direction) {
+      case "up":
+        bulletY -= this.size / 2;
+        break;
+      case "down":
+        bulletY += this.size / 2;
+        break;
+      case "left":
+        bulletX -= this.size / 2;
+        break;
+      case "right":
+        bulletX += this.size / 2;
+        break;
     }
+
+    const bullet = new Bullet(bulletX, bulletY, this.direction, "enemy");
+    this.bullets.push(bullet);
+    //console.log("Bullet", bullet);
   }
 
   destroy() {

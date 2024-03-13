@@ -1,12 +1,12 @@
 class Bullet {
-  constructor(x, y, direction) {
+  constructor(x, y, direction, owner) {
     this.x = x;
     this.y = y;
     this.width = 4;
     this.height = 4;
     this.speed = 5;
     this.direction = direction;
-
+    this.owner = owner;
     // ANIMACIONES DE LA BALA
     this.animationFrame = 0;
     this.animationCounter = 0;
@@ -132,11 +132,23 @@ class Bullet {
 
   // Destruir la bala despues de impactar
   destroy() {
-    // Eliminar la bala
-    const bulletIndex = tank.bullets.indexOf(this);
-    if (bulletIndex !== -1) {
-      tank.bullets.splice(bulletIndex, 1);
-      this.drawExplosion();
+    if (this.owner === "player") {
+      const bulletIndex = tank.bullets.indexOf(this);
+      if (bulletIndex !== -1) {
+        tank.bullets.splice(bulletIndex, 1);
+        this.drawExplosion();
+      }
+    } else if (this.owner === "enemy") {
+      // Itera sobre cada instancia de Enemy para encontrar la que contiene esta bala
+      for (let i = 0; i < enemies.length; i++) {
+        const enemy = enemies[i];
+        const bulletIndex = enemy.bullets.indexOf(this);
+        if (bulletIndex !== -1) {
+          enemy.bullets.splice(bulletIndex, 1);
+          this.drawExplosion();
+          break; // Una vez que la bala es eliminada, puedes salir del bucle
+        }
+      }
     }
   }
 }
