@@ -9,7 +9,7 @@ class Enemy {
     this.clipX = 225;
     this.clipY = 0;
 
-    this.direction = "right";
+    this.direction = this.getRandomDirection();
     this.bullets = [];
   }
 

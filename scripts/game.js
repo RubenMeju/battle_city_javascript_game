@@ -81,11 +81,19 @@ function createEnemy(x, y) {
 
 // Función para crear varios enemigos al comienzo
 function createInitialEnemies() {
-  for (let i = 0; i < 3; i++) {
-    console.log(i);
-    // Aparecen 3 enemigos al comienzo
-    createEnemy(116 * i, 0 * i);
-  }
+  // Aparecen 3 enemigos al comienzo
+  createEnemy(0, 0); // Primer enemigo en la posición (0, 0)
+
+  // Segundo enemigo en la posición central del canvas
+  createEnemy(canvas.width / 2 - cellSize, 0);
+
+  // Tercer enemigo en la posición canvasWidth - 100
+  createEnemy(canvas.width - 48, 0);
+}
+
+//Funcion para añadir mas enemigos
+function moreEnemies() {
+  createInitialEnemies();
 }
 // Llamar a esta función para crear los enemigos inicialmente
 createInitialEnemies();
@@ -121,7 +129,7 @@ function update() {
 
   //marcador
   listEnemies();
-  console.log("marcador totalEnemies: ", totalEnemies);
+
   if (eagle.isDestroyed) {
     gameOver();
   }
@@ -145,7 +153,10 @@ function update() {
       bullet.move();
     });
   });
-  // console.log("enemigos:", enemies);
+
+  if (enemies.length === 0) {
+    moreEnemies();
+  }
 
   requestAnimationFrame(update);
 }
