@@ -129,6 +129,7 @@ class Tank {
 
   keyDownHandler(event) {
     const { key } = event;
+    console.log("keyDownHandler", key);
     if (key === "right" || key === "ArrowRight") {
       this.rightPress = true;
       this.direction = "right";
@@ -143,6 +144,8 @@ class Tank {
       this.direction = "down";
     } else if (key === " ") {
       this.shoot();
+    } else if (key === "Enter") {
+      startGame();
     }
   }
 

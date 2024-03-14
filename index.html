@@ -6,8 +6,25 @@
     <title>Document</title>
   </head>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #contMenu {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: black;
+    }
+    #canvasMenu {
+      background-color: rgb(32, 32, 32);
+    }
     main {
-      display: inline-block;
+      display: none;
       background-color: gray;
       border-left: 30px solid gray;
       border-top: 30px solid gray;
@@ -18,12 +35,20 @@
     }
   </style>
   <body>
-    <main>
+    <div id="contMenu">
+      <canvas id="canvasMenu"></canvas>
+    </div>
+    <!--
+      <button id="playButton" onclick="startGame()">Jugar</button>
+     -->
+
+    <main id="game-container">
       <canvas id="canvas"></canvas>
       <canvas id="scoreBoard"></canvas>
     </main>
   </body>
 
+  <script src="./scripts/menu.js"></script>
   <script src="./level.js"></script>
   <script src="./scripts/Eagle.js"></script>
   <script src="./scripts/Tank.js"></script>

@@ -1,10 +1,17 @@
 const sprites = new Image();
-sprites.src = "./sprites.png";
+sprites.src = "./sprites/sprites.png";
 
-let shootCanvasFX = new Audio("../sounds/sfx13.mp3");
-let gameOverFX = new Audio("../sounds/gameoverFX.mp3");
-let destroyFX = new Audio("../sounds/destroyFX.mp3");
-const shootPlayer = new Audio("../sounds/shootPlayerFX.mp3");
+const shootCanvasFX = new Audio();
+shootCanvasFX.src = "../sounds/SFX15.mp3";
+
+const gameOverFX = new Audio();
+gameOverFX.src = "../sounds/gameoverFX.mp3";
+
+const destroyFX = new Audio();
+destroyFX.src = "../sounds/destroyFX.mp3";
+
+const shootPlayer = new Audio();
+shootPlayer.src = "../sounds/shootPlayerFX.mp3";
 
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
@@ -17,6 +24,9 @@ const cellSize = 28;
 
 let totalEnemies = 15;
 let enemies = [];
+
+//variable para comenzar el juego
+let isPlaying = false;
 
 //DIBUJAR EL MAPA
 function drawMap() {
@@ -125,6 +135,8 @@ function gameOver() {
 
 function update() {
   clearCanvas();
+  menu();
+
   drawMap();
 
   //marcador
@@ -161,12 +173,12 @@ function update() {
   requestAnimationFrame(update);
 }
 
-update();
 init();
+update();
 
 // funcion para los efectos de sonido
 function reproducirUnaVez(audio) {
-  var isPlaying = false; // Bandera para controlar si el audio está reproduciéndose
+  let isPlaying = false; // Bandera para controlar si el audio está reproduciéndose
 
   function reproducirAudio() {
     if (!isPlaying) {
