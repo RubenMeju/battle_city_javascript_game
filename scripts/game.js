@@ -84,9 +84,27 @@ function init() {
   document.addEventListener("keyup", (event) => tank.keyUpHandler(event));
 }
 
+function gameOver() {
+  ctx.drawImage(
+    sprites, // Imagen de la que se extrae la porción a dibujar
+    288, // Coordenada X de inicio de la porción en la imagen
+    183, // Coordenada Y de inicio de la porción en la imagen
+    32, // Ancho de la porción a extraer de la imagen
+    17, // Altura de la porción a extraer de la imagen
+    canvas.width / 2 - 35 * 2, // Coordenada X en el lienzo donde se dibujará la porción (centro)
+    canvas.height / 2 - 17 * 2, // Coordenada Y en el lienzo donde se dibujará la porción (centro)
+    35 * 4, // Ancho de la porción al dibujarla en el lienzo
+    17 * 4 // Altura de la porción al dibujarla en el lienzo
+  );
+}
+
 function update() {
   clearCanvas();
   drawMap();
+
+  if (eagle.isDestroyed) {
+    gameOver();
+  }
 
   //Jugador
   tank.draw();
