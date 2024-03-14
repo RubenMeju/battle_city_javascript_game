@@ -6,15 +6,22 @@
     <title>Document</title>
   </head>
   <style>
-    canvas {
+    main {
+      display: inline-block;
+      background-color: gray;
+      border-left: 30px solid gray;
+      border-top: 30px solid gray;
+      border-bottom: 30px solid gray;
+    }
+    #canvas {
       background-color: black;
-      border: 20px solid gray;
-      border-left: 40px solid gray;
-      border-right: 140px solid gray;
     }
   </style>
   <body>
-    <canvas id="canvas"></canvas>
+    <main>
+      <canvas id="canvas"></canvas>
+      <canvas id="scoreBoard"></canvas>
+    </main>
   </body>
 
   <script src="./level.js"></script>
@@ -22,6 +29,6 @@
   <script src="./scripts/Tank.js"></script>
   <script src="./scripts/Enemy.js"></script>
   <script src="./scripts/Bullet.js"></script>
-
+  <script src="./scripts/gameScore.js"></script>
   <script src="./scripts/game.js"></script>
 </html>

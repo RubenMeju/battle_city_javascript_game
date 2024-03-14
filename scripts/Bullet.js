@@ -116,6 +116,9 @@ class Bullet {
           reproducirUnaVez(destroyFX);
           // eliminar el enemigo del array enemies
           enemies.splice(i, 1);
+          console.log("antes", totalEnemies);
+          totalEnemies -= 1;
+          console.log("Total Enemies", totalEnemies);
         }
       }
       // Verificar si la celda contiene un muro (valor igual a 1 en la matriz level)

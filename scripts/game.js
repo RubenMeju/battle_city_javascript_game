@@ -11,11 +11,13 @@ const ctx = canvas.getContext("2d");
 
 canvas.width = 728;
 canvas.height = 728;
+//canvas del marcador
 
 const cellSize = 28;
 
-const totalEnemies = 5;
+let totalEnemies = 15;
 let enemies = [];
+
 //DIBUJAR EL MAPA
 function drawMap() {
   // Iterar sobre cada celda del mapa
@@ -79,7 +81,7 @@ function createEnemy(x, y) {
 
 // Función para crear varios enemigos al comienzo
 function createInitialEnemies() {
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 3; i++) {
     console.log(i);
     // Aparecen 3 enemigos al comienzo
     createEnemy(116 * i, 0 * i);
@@ -90,6 +92,7 @@ createInitialEnemies();
 
 function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx1.clearRect(0, 0, scoreBoard.width, scoreBoard.height);
 }
 
 function init() {
@@ -116,6 +119,9 @@ function update() {
   clearCanvas();
   drawMap();
 
+  //marcador
+  listEnemies();
+  console.log("marcador totalEnemies: ", totalEnemies);
   if (eagle.isDestroyed) {
     gameOver();
   }
