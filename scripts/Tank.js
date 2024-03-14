@@ -123,7 +123,7 @@ class Tank {
 
       const bullet = new Bullet(bulletX, bulletY, this.direction, "player");
       this.bullets.push(bullet);
-      // console.log("Bullet", bullet);
+      reproducirUnaVez(shootPlayer);
     }
   }
 

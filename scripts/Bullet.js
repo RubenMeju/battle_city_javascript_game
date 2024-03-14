@@ -73,6 +73,7 @@ class Bullet {
       console.log("Contacto aguila");
       eagle.isDestroyed = true;
       this.destroy();
+      reproducirUnaVez(gameOverFX);
     }
 
     // Si la bala sale del canvas la destruimos
@@ -83,7 +84,7 @@ class Bullet {
       this.x > canvas.width
     ) {
       this.destroy();
-      //reproducirUnaVez(shootCanvasFX);
+      reproducirUnaVez(shootCanvasFX);
     }
 
     // Destruir la bala si el muro es indestructible
@@ -112,7 +113,7 @@ class Bullet {
           this.destroy();
           //mostrar animacion
           this.drawExplosion();
-          //reproducirUnaVez(destroyFX);
+          reproducirUnaVez(destroyFX);
           // eliminar el enemigo del array enemies
           enemies.splice(i, 1);
         }

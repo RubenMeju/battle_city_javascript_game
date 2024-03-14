@@ -4,6 +4,7 @@ sprites.src = "./sprites.png";
 let shootCanvasFX = new Audio("../sounds/sfx13.mp3");
 let gameOverFX = new Audio("../sounds/gameoverFX.mp3");
 let destroyFX = new Audio("../sounds/destroyFX.mp3");
+const shootPlayer = new Audio("../sounds/shootPlayerFX.mp3");
 
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
@@ -78,7 +79,7 @@ function createEnemy(x, y) {
 
 // Función para crear varios enemigos al comienzo
 function createInitialEnemies() {
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 1; i++) {
     console.log(i);
     // Aparecen 3 enemigos al comienzo
     createEnemy(116 * i, 0 * i);
@@ -86,8 +87,6 @@ function createInitialEnemies() {
 }
 // Llamar a esta función para crear los enemigos inicialmente
 createInitialEnemies();
-//createEnemy(canvas.width - tank.size, 0);
-//createEnemy(canvas.width / 2 - tank.size, 0);
 
 function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -118,8 +117,6 @@ function update() {
   drawMap();
 
   if (eagle.isDestroyed) {
-    // reproducirUnaVez(gameOverFX);
-
     gameOver();
   }
 
@@ -149,7 +146,7 @@ function update() {
 
 update();
 init();
-/*
+
 // funcion para los efectos de sonido
 function reproducirUnaVez(audio) {
   var isPlaying = false; // Bandera para controlar si el audio está reproduciéndose
@@ -170,4 +167,3 @@ function reproducirUnaVez(audio) {
   // Llama a esta función para reproducir el audio cuando lo necesites
   reproducirAudio();
 }
-*/
