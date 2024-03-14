@@ -83,7 +83,7 @@ class Bullet {
       this.x > canvas.width
     ) {
       this.destroy();
-      reproducirUnaVez(shootCanvasFX);
+      //reproducirUnaVez(shootCanvasFX);
     }
 
     // Destruir la bala si el muro es indestructible
@@ -112,9 +112,9 @@ class Bullet {
           this.destroy();
           //mostrar animacion
           this.drawExplosion();
-          reproducirUnaVez(destroyFX);
+          //reproducirUnaVez(destroyFX);
           // eliminar el enemigo del array enemies
-          enemies[i].destroy();
+          enemies.splice(i, 1);
         }
       }
       // Verificar si la celda contiene un muro (valor igual a 1 en la matriz level)

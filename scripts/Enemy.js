@@ -11,8 +11,6 @@ class Enemy {
 
     this.direction = "right";
     this.bullets = [];
-
-    this.alive = true; // Atributo de estado para indicar si el enemigo está vivo
   }
 
   draw() {
@@ -144,10 +142,5 @@ class Enemy {
     const bullet = new Bullet(bulletX, bulletY, this.direction, "enemy");
     this.bullets.push(bullet);
     //console.log("Bullet", bullet);
-  }
-
-  destroy() {
-    this.alive = false; // Marcar al enemigo como muerto
-    // Aquí puedes realizar otras acciones relacionadas con la destrucción del enemigo, como eliminarlo de la pantalla
   }
 }

@@ -13,7 +13,8 @@ canvas.height = 728;
 
 const cellSize = 28;
 
-const enemies = [];
+const totalEnemies = 5;
+let enemies = [];
 //DIBUJAR EL MAPA
 function drawMap() {
   // Iterar sobre cada celda del mapa
@@ -75,7 +76,16 @@ function createEnemy(x, y) {
   enemies.push(newEnemy);
 }
 
-createEnemy(0, 0);
+// Función para crear varios enemigos al comienzo
+function createInitialEnemies() {
+  for (let i = 0; i < 3; i++) {
+    console.log(i);
+    // Aparecen 3 enemigos al comienzo
+    createEnemy(116 * i, 0 * i);
+  }
+}
+// Llamar a esta función para crear los enemigos inicialmente
+createInitialEnemies();
 //createEnemy(canvas.width - tank.size, 0);
 //createEnemy(canvas.width / 2 - tank.size, 0);
 
@@ -88,6 +98,7 @@ function init() {
   document.addEventListener("keyup", (event) => tank.keyUpHandler(event));
 }
 
+// GAME OVER
 function gameOver() {
   ctx.drawImage(
     sprites, // Imagen de la que se extrae la porción a dibujar
@@ -107,7 +118,7 @@ function update() {
   drawMap();
 
   if (eagle.isDestroyed) {
-    reproducirUnaVez(gameOverFX);
+    // reproducirUnaVez(gameOverFX);
 
     gameOver();
   }
@@ -122,24 +133,23 @@ function update() {
   });
   // Enemigos
   enemies.forEach((enemy) => {
-    if (enemy.alive) {
-      enemy.draw();
-      enemy.move();
+    enemy.draw();
+    enemy.move();
 
-      // Balas del enemigo
-      enemy.bullets.forEach((bullet) => {
-        bullet.draw();
-        bullet.move();
-      });
-    }
+    // Balas del enemigo
+    enemy.bullets.forEach((bullet) => {
+      bullet.draw();
+      bullet.move();
+    });
   });
+  // console.log("enemigos:", enemies);
 
   requestAnimationFrame(update);
 }
 
 update();
 init();
-
+/*
 // funcion para los efectos de sonido
 function reproducirUnaVez(audio) {
   var isPlaying = false; // Bandera para controlar si el audio está reproduciéndose
@@ -160,3 +170,4 @@ function reproducirUnaVez(audio) {
   // Llama a esta función para reproducir el audio cuando lo necesites
   reproducirAudio();
 }
+*/
