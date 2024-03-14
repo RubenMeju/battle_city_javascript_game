@@ -51,6 +51,4 @@ function startGame() {
   menuContainer.style.display = "none";
   // Mostrar el contenedor del juego principal
   gameContainer.style.display = "block";
-  // Iniciar el juego (puedes llamar a la función de inicio de juego aquí si es necesario)
-  playGame();
 }
