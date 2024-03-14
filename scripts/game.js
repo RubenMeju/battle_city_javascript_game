@@ -1,6 +1,10 @@
 const sprites = new Image();
 sprites.src = "./sprites.png";
 
+let shootCanvasFX = new Audio("../sounds/sfx13.mp3");
+let gameOverFX = new Audio("../sounds/gameoverFX.mp3");
+let destroyFX = new Audio("../sounds/destroyFX.mp3");
+
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 
@@ -72,8 +76,8 @@ function createEnemy(x, y) {
 }
 
 createEnemy(0, 0);
-createEnemy(canvas.width - tank.size, 0);
-createEnemy(canvas.width / 2 - tank.size, 0);
+//createEnemy(canvas.width - tank.size, 0);
+//createEnemy(canvas.width / 2 - tank.size, 0);
 
 function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -103,6 +107,8 @@ function update() {
   drawMap();
 
   if (eagle.isDestroyed) {
+    reproducirUnaVez(gameOverFX);
+
     gameOver();
   }
 
@@ -133,3 +139,24 @@ function update() {
 
 update();
 init();
+
+// funcion para los efectos de sonido
+function reproducirUnaVez(audio) {
+  var isPlaying = false; // Bandera para controlar si el audio está reproduciéndose
+
+  function reproducirAudio() {
+    if (!isPlaying) {
+      // Si el audio no se está reproduciendo actualmente
+      isPlaying = true; // Establecer la bandera a verdadero
+      audio.play(); // Reproducir el audio
+    }
+  }
+
+  audio.addEventListener("ended", function () {
+    isPlaying = false; // Establecer la bandera a falso cuando el audio termine
+    audio.currentTime = 0; // Reiniciar el audio al principio
+  });
+
+  // Llama a esta función para reproducir el audio cuando lo necesites
+  reproducirAudio();
+}

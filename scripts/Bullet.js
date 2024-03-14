@@ -82,9 +82,8 @@ class Bullet {
       this.x < 0 ||
       this.x > canvas.width
     ) {
-      // activamos la animacion de la bala
-
       this.destroy();
+      reproducirUnaVez(shootCanvasFX);
     }
 
     // Destruir la bala si el muro es indestructible
@@ -113,6 +112,7 @@ class Bullet {
           this.destroy();
           //mostrar animacion
           this.drawExplosion();
+          reproducirUnaVez(destroyFX);
           // eliminar el enemigo del array enemies
           enemies[i].destroy();
         }
