@@ -129,7 +129,7 @@ class Tank {
 
   keyDownHandler(event) {
     const { key } = event;
-    console.log("keyDownHandler", key);
+    // console.log("keyDownHandler", key);
     if (key === "right" || key === "ArrowRight") {
       this.rightPress = true;
       this.direction = "right";

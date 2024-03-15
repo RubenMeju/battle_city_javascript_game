@@ -166,7 +166,7 @@ function update() {
     });
   });
 
-  if (enemies.length === 0) {
+  if (enemies.length === 0 && totalEnemies !== 0) {
     moreEnemies();
   }
 
