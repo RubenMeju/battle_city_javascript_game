@@ -17,6 +17,7 @@ class Tank {
     //armamento
     this.bullets = [];
     this.limitBullets = 1;
+    this.power = [0, 1, 2, 3];
     // ANIMACIONES DEL TANQUE
     this.animationFrame = 0;
     this.animationCounter = 0;
@@ -189,4 +190,29 @@ class Tank {
       this.downPress = false;
     }
   }
+}
+
+// mejoras
+
+function drawStar(x, y) {
+  ctx.drawImage(sprites, 304, 112, 16, 16, x, y, cellSize * 2, cellSize * 2);
+}
+
+// Lógica para activar la estrella
+function activateStar() {
+  isPowered = true;
+
+  let posX = Math.floor(Math.random() * canvas.width);
+  let posY = Math.floor(Math.random() * canvas.height);
+
+  // console.log(tank.isCollision(posX, posY));
+
+  if (!tank.isCollision(posX, posY)) {
+    drawStar(0, 0);
+  }
+  // Establecer un temporizador para eliminar la estrella después de 5 segundos
+  setTimeout(() => {
+    console.log("remove star");
+    isPowered = false;
+  }, 15000);
 }

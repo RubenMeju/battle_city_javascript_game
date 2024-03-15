@@ -116,7 +116,7 @@ function moreEnemies() {
   createInitialEnemies();
 }
 // Llamar a esta función para crear los enemigos inicialmente
-createInitialEnemies();
+//createInitialEnemies();
 
 function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -174,11 +174,24 @@ function drawExplosion(x, y) {
   }
 }
 
+let posX = 0;
+let posY = 0;
+let isPowered = false;
+
+setInterval(() => {
+  console.log("interval");
+  activateStar();
+}, 6000);
+
 function update() {
   clearCanvas();
   menu();
   if (isPlaying) {
     drawMap();
+
+    if (isPowered) {
+      drawStar(0, 0);
+    }
 
     //marcador
     listEnemies();
@@ -208,7 +221,7 @@ function update() {
     });
 
     if (enemies.length === 0 && totalEnemies !== 0) {
-      moreEnemies();
+      // moreEnemies();
     }
   }
 
