@@ -51,5 +51,7 @@ function startGame() {
   // Ocultar el menú
   menuContainer.style.display = "none";
   // Mostrar el contenedor del juego principal
-  gameContainer.style.display = "block";
+  gameContainer.style.display = "flex";
+  gameContainer.style.justifyContent = "center";
+  gameContainer.style.alignItems = "center";
 }

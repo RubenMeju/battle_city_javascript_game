@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Battle city Javascript Vanilla</title>
   </head>
   <style>
     * {
@@ -11,20 +11,26 @@
       padding: 0;
       box-sizing: border-box;
     }
-
+    body {
+      background-color: black;
+    }
     #contMenu {
       width: 100vw;
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: black;
     }
     #canvasMenu {
       background-color: rgb(32, 32, 32);
     }
-    main {
+    #game-container {
       display: none;
+      height: 90vh;
+      max-width: 900px;
+      margin: auto;
+      margin-top: 40px;
+
       background-color: gray;
       border-left: 30px solid gray;
       border-top: 30px solid gray;
