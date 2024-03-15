@@ -10,6 +10,16 @@ gameOverFX.src = "../sounds/gameoverFX.mp3";
 const destroyFX = new Audio();
 destroyFX.src = "../sounds/destroyFX.mp3";
 
+// SONIDOS DEL TANQUE DEL JUGADOR
+
+// movimiento del tanque
+const moveFX = new Audio();
+moveFX.src = "../sounds/move.mp3";
+
+// tanque parado
+const stopFX = new Audio();
+stopFX.src = "../sounds/stop.mp3";
+
 const shootPlayer = new Audio();
 shootPlayer.src = "../sounds/shootPlayerFX.mp3";
 

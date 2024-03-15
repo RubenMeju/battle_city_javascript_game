@@ -21,7 +21,6 @@ class Tank {
   }
 
   draw() {
-    console.log("drawing clipx", this.clipX, this.clipY);
     ctx.drawImage(
       sprites,
       this.clipX[this.animationCounter],
@@ -34,7 +33,6 @@ class Tank {
       this.size
     );
     this.animationCounter++;
-    //console.log(this.animationCounter);
     if (this.animationCounter >= 2) {
       this.animationCounter = 0;
       this.animationFrame = (this.animationFrame + 1) % 2;
@@ -57,6 +55,20 @@ class Tank {
     } else if (this.downPress && this.y < canvas.height - this.size) {
       newY = this.y + this.sensitivity;
       this.clipX = [65, 80];
+    }
+
+    //reproducir sonido del motor si esta en movimiento
+    if (
+      !this.rightPress &&
+      !this.leftPress &&
+      !this.upPress &&
+      !this.downPress
+    ) {
+      moveFX.pause();
+      stopFX.play();
+    } else {
+      stopFX.pause();
+      moveFX.play();
     }
 
     // Verificar colisiones con los muros
