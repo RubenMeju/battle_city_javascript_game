@@ -136,40 +136,40 @@ function gameOver() {
 function update() {
   clearCanvas();
   menu();
+  if (isPlaying) {
+    drawMap();
 
-  drawMap();
+    //marcador
+    listEnemies();
 
-  //marcador
-  listEnemies();
+    if (eagle.isDestroyed) {
+      gameOver();
+    }
 
-  if (eagle.isDestroyed) {
-    gameOver();
-  }
+    //Jugador
+    tank.draw();
+    tank.move();
 
-  //Jugador
-  tank.draw();
-  tank.move();
-
-  tank.bullets.forEach((bullet) => {
-    bullet.draw();
-    bullet.move();
-  });
-  // Enemigos
-  enemies.forEach((enemy) => {
-    enemy.draw();
-    enemy.move();
-
-    // Balas del enemigo
-    enemy.bullets.forEach((bullet) => {
+    tank.bullets.forEach((bullet) => {
       bullet.draw();
       bullet.move();
     });
-  });
+    // Enemigos
+    enemies.forEach((enemy) => {
+      enemy.draw();
+      enemy.move();
 
-  if (enemies.length === 0 && totalEnemies !== 0) {
-    moreEnemies();
+      // Balas del enemigo
+      enemy.bullets.forEach((bullet) => {
+        bullet.draw();
+        bullet.move();
+      });
+    });
+
+    if (enemies.length === 0 && totalEnemies !== 0) {
+      moreEnemies();
+    }
   }
-
   requestAnimationFrame(update);
 }
 

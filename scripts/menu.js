@@ -47,6 +47,7 @@ const playButton = document.getElementById("playButton");
 
 // Función para iniciar el juego
 function startGame() {
+  isPlaying = true;
   // Ocultar el menú
   menuContainer.style.display = "none";
   // Mostrar el contenedor del juego principal
