@@ -7,40 +7,11 @@ class Bullet {
     this.speed = 5;
     this.direction = direction;
     this.owner = owner;
-    // ANIMACIONES DE LA BALA
-    this.animationFrame = 0;
-    this.animationCounter = 0;
   }
 
   draw() {
     ctx.fillStyle = "white";
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-  }
-
-  drawExplosion() {
-    const animationCoordinates = [
-      [258, 130], // Frame 1
-      [295, 130], // Frame 2
-    ];
-
-    ctx.drawImage(
-      sprites,
-      animationCoordinates[this.animationFrame][0], // sx
-      animationCoordinates[this.animationFrame][1], // sy
-      16,
-      16,
-      this.x,
-      this.y,
-      48,
-      48
-    );
-
-    //this.animationCounter++;
-    //console.log(this.animationCounter);
-    if (this.animationCounter >= 10) {
-      this.animationCounter = 0;
-      this.animationFrame = (this.animationFrame + 1) % 2;
-    }
+    ctx.fillRect(this.x - 4, this.y, this.width, this.height);
   }
 
   move() {
@@ -70,7 +41,7 @@ class Bullet {
 
     //Una bala alcanza el aguila
     if (level[cellY] && level[cellY][cellX] === 4) {
-      console.log("Contacto aguila");
+      // console.log("Contacto aguila");
       eagle.isDestroyed = true;
       this.destroy();
       reproducirUnaVez(gameOverFX);
@@ -91,13 +62,13 @@ class Bullet {
     if (level[cellY] && level[cellY][cellX] === 1) {
       this.destroy();
       this.destroyWall();
-      this.drawExplosion();
+      //drawExplosion(this.x, this.y);
     }
 
     // Destruir la bala si el muro es indestructible
     if (level[cellY] && level[cellY][cellX] === 2) {
       this.destroy();
-      this.drawExplosion();
+      //drawExplosion(this.x, this.y);
     }
 
     //Destruir al enemigo si la bala colisiona con el.
@@ -112,7 +83,7 @@ class Bullet {
           //destruir la bala
           this.destroy();
           //mostrar animacion
-          this.drawExplosion();
+          //drawExplosion(enemies[i].x, enemies[i].y);
           reproducirUnaVez(destroyFX);
           // eliminar el enemigo del array enemies
           enemies.splice(i, 1);
@@ -137,11 +108,12 @@ class Bullet {
 
   // Destruir la bala despues de impactar
   destroy() {
+    drawExplosion(this.x, this.y);
     if (this.owner === "player") {
       const bulletIndex = tank.bullets.indexOf(this);
       if (bulletIndex !== -1) {
         tank.bullets.splice(bulletIndex, 1);
-        this.drawExplosion();
+        //drawExplosion(this.x, this.y);
       }
     } else if (this.owner === "enemy") {
       // Itera sobre cada instancia de Enemy para encontrar la que contiene esta bala
@@ -150,7 +122,7 @@ class Bullet {
         const bulletIndex = enemy.bullets.indexOf(this);
         if (bulletIndex !== -1) {
           enemy.bullets.splice(bulletIndex, 1);
-          this.drawExplosion();
+          //drawExplosion();
           break; // Una vez que la bala es eliminada, puedes salir del bucle
         }
       }

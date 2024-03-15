@@ -8,13 +8,15 @@ class Tank {
     this.sensitivity = 2;
     this.clipX = [96, 112];
     this.clipY = 0;
+    //moviemiento
     this.upPress = false;
     this.downPress = false;
     this.rightPress = false;
     this.leftPress = false;
     this.direction = "up";
+    //armamento
     this.bullets = [];
-
+    this.limitBullets = 1;
     // ANIMACIONES DEL TANQUE
     this.animationFrame = 0;
     this.animationCounter = 0;
@@ -40,6 +42,9 @@ class Tank {
   }
 
   move() {
+    for (let i = 0; i < this.bullets.length; i++) {
+      console.log("move", this.bullets[i]);
+    }
     let newX = this.x;
     let newY = this.y;
 
@@ -124,7 +129,7 @@ class Tank {
   }
 
   shoot() {
-    if (this.bullets.length < 2) {
+    if (this.bullets.length < this.limitBullets) {
       // Limitar a dos balas
       let bulletX = this.x + this.size / 2;
       let bulletY = this.y + this.size / 2;

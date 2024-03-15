@@ -143,6 +143,37 @@ function gameOver() {
   );
 }
 
+// ANIMACIONES DE LA BALA
+let animationFrame = 0;
+let animationCounter = 0;
+
+function drawExplosion(x, y) {
+  const animationCoordinates = [
+    [256, 128, 48, 48], // Frame 1
+    [272, 128, 55, 55], // Frame 2
+    [288, 128, 60, 60],
+  ];
+
+  ctx.drawImage(
+    sprites,
+    animationCoordinates[animationFrame][0], // sx
+    animationCoordinates[animationFrame][1], // sy
+    16,
+    16,
+    x,
+    y,
+    animationCoordinates[animationFrame][2], //
+    animationCoordinates[animationFrame][3]
+  );
+
+  animationCounter++;
+  //console.log(animationCounter);
+  if (animationCounter >= 12) {
+    animationCounter = 0;
+    animationFrame = (animationFrame + 1) % 3;
+  }
+}
+
 function update() {
   clearCanvas();
   menu();
@@ -180,6 +211,7 @@ function update() {
       moreEnemies();
     }
   }
+
   requestAnimationFrame(update);
 }
 
