@@ -6,7 +6,7 @@ class Tank {
     this.height = 15;
     this.size = 48;
     this.sensitivity = 2;
-    this.clipX = 0;
+    this.clipX = [96, 112];
     this.clipY = 0;
     this.upPress = false;
     this.downPress = false;
@@ -14,12 +14,17 @@ class Tank {
     this.leftPress = false;
     this.direction = "up";
     this.bullets = [];
+
+    // ANIMACIONES DEL TANQUE
+    this.animationFrame = 0;
+    this.animationCounter = 0;
   }
 
   draw() {
+    console.log("drawing clipx", this.clipX, this.clipY);
     ctx.drawImage(
       sprites,
-      this.clipX,
+      this.clipX[this.animationCounter],
       this.clipY,
       this.width,
       this.height,
@@ -28,6 +33,12 @@ class Tank {
       this.size,
       this.size
     );
+    this.animationCounter++;
+    //console.log(this.animationCounter);
+    if (this.animationCounter >= 2) {
+      this.animationCounter = 0;
+      this.animationFrame = (this.animationFrame + 1) % 2;
+    }
   }
 
   move() {
@@ -36,16 +47,16 @@ class Tank {
 
     if (this.rightPress && this.x < canvas.width - this.size) {
       newX = this.x + this.sensitivity;
-      this.clipX = 96;
+      this.clipX = [96, 112];
     } else if (this.leftPress && this.x > 2) {
       newX = this.x - this.sensitivity;
-      this.clipX = 48;
+      this.clipX = [32, 48];
     } else if (this.upPress && this.y > 0) {
       newY = this.y - this.sensitivity;
-      this.clipX = 0;
+      this.clipX = [0, 16];
     } else if (this.downPress && this.y < canvas.height - this.size) {
       newY = this.y + this.sensitivity;
-      this.clipX = 80;
+      this.clipX = [65, 80];
     }
 
     // Verificar colisiones con los muros
